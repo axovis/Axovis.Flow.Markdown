@@ -1,13 +1,20 @@
 <?php
 namespace Axovis\Flow\Markdown\Service;
 
+use Parsedown;
 use TYPO3\Flow\Annotations as Flow;
 
 /**
  * @Flow\Scope("singleton")
  */
 class MarkdownService {
+    /**
+     * @var Parsedown
+     */
+    protected $parsedown;
+
     public function __construct() {
+        $this->parsedown = new Parsedown();
     }
 
     /**
@@ -17,8 +24,6 @@ class MarkdownService {
      * @return string the created html content
      */
     public function parse($content) {
-        /*$document = $this->parser->parse($content);
-
-        return $document->render();*/
+        return $this->parsedown->text($content);
     }
 }
