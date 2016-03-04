@@ -1,7 +1,7 @@
 <?php
 namespace Axovis\Flow\Markdown\Service;
 
-use Parsedown;
+use Axovis\Flow\Markdown\Util\Parsedown;
 use TYPO3\Flow\Annotations as Flow;
 
 /**

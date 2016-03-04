@@ -4,8 +4,7 @@
     "description": "TYPO3 Flow plugin to parse Markdown document.",
     "license": "MIT",
     "require": {
-        "typo3/flow": "~3.0",
-        "erusev/parsedown": "*"
+        "typo3/flow": "~3.0"
     },
     "authors": [
         {
