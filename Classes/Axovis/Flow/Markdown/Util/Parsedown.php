@@ -56,7 +56,7 @@ class Parsedown
     {
         $this->linksNofollow = $linksNofollow;
 
-        return this;
+        return $this;
     }
 
     protected $increaseHeadlineLevelBy = 0;

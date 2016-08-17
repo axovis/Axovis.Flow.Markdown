@@ -28,7 +28,7 @@ class MarkdownService {
      */
     public function parse($content, $nofollow, $increaseHeadlineLevelBy) {
         $this->parsedown->setLinksNofollow($nofollow);
-        $this->parsedown->increaseHeadlineLevelBy($increaseHeadlineLevelBy);
+        $this->parsedown->setIncreaseHeadlineLevelBy($increaseHeadlineLevelBy);
 
         return $this->parsedown->text($content);
     }
