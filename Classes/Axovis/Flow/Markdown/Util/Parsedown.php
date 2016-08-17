@@ -44,9 +44,29 @@ class Parsedown
         return $markup;
     }
 
+
+
+
     #
     # Setters
     #
+    protected $linksNofollow;
+
+    function setLinksNofollow($linksNofollow)
+    {
+        $this->linksNofollow = $linksNofollow;
+
+        return this;
+    }
+
+    protected $increaseHeadlineLevelBy = 0;
+
+    function setIncreaseHeadlineLevelBy ($increaseHeadlineLevelBy) {
+
+        $this->increaseHeadlineLevelBy = $increaseHeadlineLevelBy;
+
+        return $this;
+    }
 
     function setBreaksEnabled($breaksEnabled)
     {
@@ -477,7 +497,7 @@ class Parsedown
 
             $Block = array(
                 'element' => array(
-                    'name' => 'h' . min(6, $level),
+                    'name' => 'h' . min(6, ($level + $this->increaseHeadlineLevelBy)),
                     'text' => $text,
                     'handler' => 'line',
                 ),
@@ -647,7 +667,7 @@ class Parsedown
 
         if (chop($Line['text'], $Line['text'][0]) === '')
         {
-            $Block['element']['name'] = $Line['text'][0] === '=' ? 'h1' : 'h2';
+            $Block['element']['name'] = $Line['text'][0] === '=' ? 'h' . (1 + $this->increaseHeadlineLevelBy) : 'h' . (2 + $this->increaseHeadlineLevelBy);
 
             return $Block;
         }
@@ -1179,6 +1199,10 @@ class Parsedown
                 'title' => null,
             ),
         );
+
+        if ($this->linksNofollow == true) {
+            $Element['attributes']['rel'] = 'nofollow';
+        }
 
         $extent = 0;
 
