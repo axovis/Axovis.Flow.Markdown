@@ -1,18 +1,12 @@
 {
     "name": "axovis/flow-markdown",
-    "type": "typo3-flow-plugin",
-    "description": "TYPO3 Flow plugin to parse Markdown document.",
+    "type": "neos-plugin",
+    "description": "Flow plugin to parse Markdown document.",
     "license": "GPLv3",
     "require": {
-        "typo3/flow": "~3.0"
+        "neos/flow": "~4.0"
     },
     "authors": [
-        {
-            "name": "Sönke Michelsen",
-            "email": "s.michelsen@axovis.com",
-            "homepage": "https://www.axovis.com",
-            "role": "Developer"
-        },
         {
             "name": "Alexander Kappler",
             "email": "kappler@axovis.com",
@@ -22,8 +16,8 @@
     ],
     "keywords": ["flow","markdown","md","parser","document"],
     "autoload": {
-        "psr-0": {
-            "Axovis\\Flow\\Markdown": "Classes"
+        "psr-4": {
+            "Axovis\\Flow\\Markdown\\": "Classes"
         }
     }
 }
