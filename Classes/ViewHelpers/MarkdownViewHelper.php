@@ -2,15 +2,22 @@
 namespace Axovis\Flow\Markdown\ViewHelpers;
 
 use Axovis\Flow\Markdown\Service\MarkdownService;
-use TYPO3\Fluid\Core\ViewHelper\AbstractViewHelper;
-use TYPO3\Flow\Annotations as Flow;
+use Neos\Flow\Annotations as Flow;
+use Neos\FluidAdaptor\Core\ViewHelper\AbstractViewHelper;
 
 class MarkdownViewHelper extends AbstractViewHelper {
     /**
-     * @var MarkdownService
      * @Flow\Inject
+     * @var MarkdownService
      */
     protected $markdownService;
+
+    public function initializeArguments()
+    {
+        $this->registerArgument('content', 'string', 'The Markdown string');
+        $this->registerArgument('nofollow', 'bool', 'Add nofollow to links');
+        $this->registerArgument('increaseHeadlineLevelBy', 'int', 'If added <h1> tags will be build like <h(1+value)>, good to prevent duplicated h1 tags');
+    }
 
     /**
      * @param string $content
@@ -19,10 +26,12 @@ class MarkdownViewHelper extends AbstractViewHelper {
      * @return array
      */
     public function render($content = null, $nofollow = false, $increaseHeadlineLevelBy = 0) {
-        if($content == null) {
+        if(!$this->arguments['content']) {
             $content = $this->renderChildren();
+        } else {
+            $content = $this->arguments['content'];
         }
 
-        return $this->markdownService->parse($content, $nofollow, $increaseHeadlineLevelBy);
+        return $this->markdownService->parse($content, $this->arguments['nofollow'], $this->arguments['increaseHeadlineLevelBy']);
     }
 }
