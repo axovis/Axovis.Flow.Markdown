@@ -1255,6 +1255,7 @@ class Parsedown
 
             $Element['attributes']['href'] = $Definition['url'];
             $Element['attributes']['title'] = $Definition['title'];
+            $Element['attributes']['target'] = '_blank';
         }
 
         $Element['attributes']['href'] = str_replace(array('&', '<'), array('&amp;', '&lt;'), $Element['attributes']['href']);
@@ -1355,6 +1356,7 @@ class Parsedown
                     'text' => $matches[0][0],
                     'attributes' => array(
                         'href' => $matches[0][0],
+                        'target' => '_blank'
                     ),
                 ),
             );
